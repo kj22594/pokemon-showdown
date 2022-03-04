@@ -46,7 +46,7 @@ export const Formats: FormatList = [
 			'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Zekrom', 'Zygarde-Base', 'Zygarde-Complete', 'Arena Trap', 'Battle Bond', 'Moody',
 			'Power Construct', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'Bright Powder', 'King\'s Rock', 'Lax Incense', 'Razor Fang',
 			'Quick Claw', 'Baton Pass', 'Buginium Z','Darkinium Z','Dragonium Z','Electrium Z','Fairium Z','Fightinium Z','Firium Z','Flyinium Z',
-			'Ghostium Z','Grassium Z','Icium Z','Normalium Z','Poisonium Z','Psychium Z','Rockium Z','Steelium Z','Waterium Z','Aloraichium Z','Decidium Z','Evium Z',
+			'Ghostium Z','Grassium Z','Icium Z','Normalium Z','Poisonium Z','Psychium Z','Rockium Z','Steelium Z','Waterium Z','Aloraichium Z','Decidium Z','Eevium Z',
 			'Incinium Z','Kommonium Z','Lunalium Z','Lycanium Z','Marshadium Z','Mewnium Z','Mimikium Z','Pikanium Z','Pikashunium Z','Primarium Z','Snorlium Z','Solganium Z',
 			'Tapunium Z','Ultranecrozium Z', 'Abomasnow-Mega', 'Absol-Mega', 'Aerodactyl-Mega', 'Aggron-Mega', 'Alakazam-Mega', 'Altaria-Mega', 'Ampharos-Mega', 'Audino-Mega',
 			'Banette-Mega', 'Beedril-Mega', 'Blastoise-Mega', 'Blaziken-Mega', 'Camerupt-Mega', 'Charizard-Mega', 'Diancie-Mega', 'Gallade-Mega', 'Garchomp-Mega', 'Gardevoir-Mega',
