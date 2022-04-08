@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 	bulbasaur: {
 		learnset: {
@@ -25071,7 +25073,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			darkpulse: ["8M", "8L93"],
 			darkvoid: ["8L66"],
 			disable: ["8L1"],
-			doubleteam: ["8M", "8L47"],
+			doubleteam: ["8M", "8L47", "8S0"],
 			drainpunch: ["8M"],
 			dreameater: ["8M", "8L84"],
 			endure: ["8M"],
@@ -25080,11 +25082,11 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			fling: ["8M"],
 			focusblast: ["8M"],
 			focuspunch: ["8M"],
-			foulplay: ["8L38"],
+			foulplay: ["8L38", "8S0"],
 			gigaimpact: ["8M"],
 			haze: ["8L57"],
 			hyperbeam: ["8M"],
-			hypnosis: ["8L20"],
+			hypnosis: ["8L20", "8S0"],
 			icebeam: ["8M"],
 			nastyplot: ["8M", "8L75"],
 			payback: ["8M"],
@@ -25107,7 +25109,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			snarl: ["8M"],
 			strength: ["8M"],
 			substitute: ["8M"],
-			suckerpunch: ["8L29"],
+			suckerpunch: ["8L29", "8S0"],
 			sunnyday: ["8M"],
 			swagger: ["8M"],
 			swordsdance: ["8M"],
@@ -25120,6 +25122,10 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			willowisp: ["8M"],
 			xscissor: ["8M"],
 		},
+		eventData: [
+			{generation: 8, level: 50, shiny: 1, perfectIVs: 3, moves: ["hypnosis", "suckerpunch", "foulplay", "doubleteam"]},
+		],
+		eventOnly: true,
 	},
 	shaymin: {
 		learnset: {
@@ -25160,7 +25166,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			worryseed: ["8L55"],
 		},
 		eventData: [
-			{generation: 8, level: 30, shiny: 1, moves: ["growth", "magicalleaf", "leechseed", "synthesis"], pokeball: "pokeball"},
+			{generation: 8, level: 30, shiny: 1, perfectIVs: 3, moves: ["growth", "magicalleaf", "leechseed", "synthesis"]},
 		],
 		eventOnly: true,
 	},
@@ -25199,14 +25205,14 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			flashcannon: ["8M"],
 			fly: ["8M"],
 			focusblast: ["8M"],
-			futuresight: ["8L60"],
+			futuresight: ["8L60", "8S0"],
 			gigadrain: ["8M"],
 			gigaimpact: ["8M"],
 			grassknot: ["8M"],
 			gravity: ["8L10"],
 			hail: ["8M"],
-			healingwish: ["8L50"],
-			hyperbeam: ["8M", "8L80"],
+			healingwish: ["8L50", "8S0"],
+			hyperbeam: ["8M", "8L80", "8S0"],
 			hypervoice: ["8L30"],
 			icebeam: ["8M"],
 			irontail: ["8M"],
@@ -25220,7 +25226,7 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			psychic: ["8M"],
 			psychup: ["8M"],
 			raindance: ["8M"],
-			recover: ["8L70"],
+			recover: ["8L70", "8S0"],
 			recycle: ["8M"],
 			reflect: ["8M"],
 			rest: ["8M"],
@@ -25257,6 +25263,10 @@ export const Learnsets: {[k: string]: ModdedLearnsetData} = {
 			workup: ["8M"],
 			xscissor: ["8M"],
 		},
+		eventData: [
+			{generation: 8, level: 80, shiny: 1, perfectIVs: 3, moves: ["healingwish", "futuresight", "recover", "hyperbeam"]},
+		],
+		eventOnly: true,
 	},
 	syclar: {
 		learnset: {

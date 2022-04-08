@@ -192,6 +192,12 @@ describe('[Gen 8] Random Doubles Battle', () => {
 	it('should always give Urshifu Wicked Blow', () => {
 		testAlwaysHasMove('urshifu', options, 'wickedblow');
 	});
+
+	it('should always give Flapple Ripen', () => {
+		testSet('flapple', options, set => {
+			assert.equal(set.ability, 'Ripen');
+		});
+	});
 });
 
 describe('[Gen 8] Random Battle (No Dmax)', () => {
@@ -260,7 +266,7 @@ describe('[Gen 8 BDSP] Random Battle', () => {
 	});
 
 	it('should give Unown a Choice item', () => {
-		testSet('unown', options, set => assert.match(set.item, /^Choice /));
+		testSet('unown', options, set => assert(set.item.startsWith('Choice')));
 	});
 
 	it('should give Toxic Orb to Gliscor and Zangoose', () => {
@@ -369,7 +375,7 @@ describe('[Gen 8 BDSP] Random Battle', () => {
 	it('Ambipom should only get Switcheroo if it has a Choice item', () => {
 		testSet('ambipom', options, set => {
 			if (!set.moves.includes('switcheroo')) return;
-			assert.match(set.item, /^Choice /, `Ambipom has Switcheroo and no Choice item (set=${JSON.stringify(set)})`);
+			assert(set.item.startsWith('Choice'), `Ambipom has Switcheroo and no Choice item (set=${JSON.stringify(set)})`);
 		});
 	});
 
