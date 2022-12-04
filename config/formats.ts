@@ -242,11 +242,11 @@ export const Formats: FormatList = [
 		banlist: [
 			'Uber', 'AG', 'Cinderace + Libero', 'Landorus-Base + Sheer Force', 'Arceus', 'Calyrex-Ice', 'Calyrex-Shadow', 'Chien-Pao', 'Dialga', 'Dialga-Origin', 'Palkia-Origin', 'Dragapult',
 			'Eternatus', 'Flutter Mane', 'Giratina', 'Groudon', 'Iron Bundle', 'Iron Valiant', 'Koraidon', 'Kyogre', 'Magearna', 'Mew', 'Mewtwo', 'Miraidon', 'Palafin', 'Palafin-Hero', 'Palkia',
-			'Rayquaza', 'Roaring Moon', 'Spectrier', 'Urshifu-Base', 'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock'
+			'Rayquaza', 'Roaring Moon', 'Spectrier', 'Urshifu-Base', 'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Arena Trap', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock'
 		],
 	},
 	{
-		name: "[Gen 9] Draft (No Tera)",
+		name: "[Gen 9] No Tera Draft",
 
 		mod: 'gen9',
 		ruleset: ['Standard', 'Terastal Clause','+ Charmander', '+ Charmeleon', '+ Charizard', '+ Diglett-Alola', '+ Dugtrio-Alola', '+ Meowth-Alola',
@@ -260,7 +260,7 @@ export const Formats: FormatList = [
 		banlist: [
 			'Uber', 'AG', 'Cinderace + Libero', 'Landorus-Base + Sheer Force', 'Arceus', 'Calyrex-Ice', 'Calyrex-Shadow', 'Chien-Pao', 'Dialga', 'Dialga-Origin', 'Palkia-Origin', 'Dragapult',
 			'Eternatus', 'Flutter Mane', 'Giratina', 'Groudon', 'Iron Bundle', 'Iron Valiant', 'Koraidon', 'Kyogre', 'Magearna', 'Mew', 'Mewtwo', 'Miraidon', 'Palafin', 'Palafin-Hero', 'Palkia',
-			'Rayquaza', 'Roaring Moon', 'Spectrier', 'Urshifu-Base', 'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock'
+			'Rayquaza', 'Roaring Moon', 'Spectrier', 'Urshifu-Base', 'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Arena Trap', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock'
 		],
 	},
 	{
