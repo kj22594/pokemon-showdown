@@ -231,7 +231,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] Draft",
 
 		mod: 'gen9',
-		ruleset: ['Standard', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Sleep Clause Mod', '+ Charmander', '+ Charmeleon', '+ Charizard', '+ Diglett-Alola', '+ Dugtrio-Alola', '+ Meowth-Alola',
+		ruleset: ['Standard', '+ Charmander', '+ Charmeleon', '+ Charizard', '+ Diglett-Alola', '+ Dugtrio-Alola', '+ Meowth-Alola',
 			'+ Meowth-Galar', '+ Persian-Alola', '+ Growlithe-Hisui', '+ Arcanine-Hisui', '+ Slowpoke-Galar', '+ Slowbro-Galar', '+ Grimer-Alola', '+ Muk-Alola', '+ Voltorb-Hisui', '+ Electrode-Hisui', '+ Articuno',
 			'+ Articuno-Galar', '+ Zapdos', '+ Zapdos-Galar', '+ Moltres', '+ Moltres-Galar', '+ Cyndaquil', '+ Quilava', '+ Typhlosion', '+ Typhlosion-Hisui', '+ Quagsire', '+ Slowking-Galar', '+ Qwilfish-Hisui', '+ Sneasel-Hisui',
 			'+ Uxie', '+ Mesprit', '+ Azelf', '+ Heatran', '+ Cresselia', '+ Victini', '+ Oshawott', '+ Dewott', '+ Samurott', '+ Samurott-Hisui', '+ Zorua-Hisui', '+ Zoroark-Hisui', '+ Braviary-Hisui', '+ Tornadus', '+ Tornadus-Therian',
@@ -249,7 +249,7 @@ export const Formats: FormatList = [
 		name: "[Gen 9] Draft (No Tera)",
 
 		mod: 'gen9',
-		ruleset: ['Standard', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Sleep Clause Mod', '+ Charmander', '+ Charmeleon', '+ Charizard', '+ Diglett-Alola', '+ Dugtrio-Alola', '+ Meowth-Alola',
+		ruleset: ['Standard', 'Terastal Clause','+ Charmander', '+ Charmeleon', '+ Charizard', '+ Diglett-Alola', '+ Dugtrio-Alola', '+ Meowth-Alola',
 			'+ Meowth-Galar', '+ Persian-Alola', '+ Growlithe-Hisui', '+ Arcanine-Hisui', '+ Slowpoke-Galar', '+ Slowbro-Galar', '+ Grimer-Alola', '+ Muk-Alola', '+ Voltorb-Hisui', '+ Electrode-Hisui', '+ Articuno',
 			'+ Articuno-Galar', '+ Zapdos', '+ Zapdos-Galar', '+ Moltres', '+ Moltres-Galar', '+ Cyndaquil', '+ Quilava', '+ Typhlosion', '+ Typhlosion-Hisui', '+ Quagsire', '+ Slowking-Galar', '+ Qwilfish-Hisui', '+ Sneasel-Hisui',
 			'+ Uxie', '+ Mesprit', '+ Azelf', '+ Heatran', '+ Cresselia', '+ Victini', '+ Oshawott', '+ Dewott', '+ Samurott', '+ Samurott-Hisui', '+ Zorua-Hisui', '+ Zoroark-Hisui', '+ Braviary-Hisui', '+ Tornadus', '+ Tornadus-Therian',
