@@ -87,6 +87,7 @@ export class PokemonSources {
 
 	babyOnly?: string;
 	sketchMove?: string;
+	dreamWorldMoveCount: number;
 	hm?: string;
 	restrictiveMoves?: string[];
 	/** Obscure learn methods */
@@ -99,6 +100,7 @@ export class PokemonSources {
 		this.isHidden = null;
 		this.limitedEggMoves = undefined;
 		this.moveEvoCarryCount = 0;
+		this.dreamWorldMoveCount = 0;
 	}
 	size() {
 		if (this.sourcesBefore) return Infinity;
@@ -182,6 +184,7 @@ export class PokemonSources {
 			}
 		}
 		this.moveEvoCarryCount += other.moveEvoCarryCount;
+		this.dreamWorldMoveCount += other.dreamWorldMoveCount;
 		if (other.sourcesAfter > this.sourcesAfter) this.sourcesAfter = other.sourcesAfter;
 		if (other.isHidden) this.isHidden = true;
 	}
@@ -411,6 +414,10 @@ export class TeamValidator {
 			name = `${set.name} (${set.species})`;
 		}
 
+		if (!set.teraType && this.gen === 9) {
+			set.teraType = species.types[0];
+		}
+
 		if (!set.level) set.level = ruleTable.defaultLevel;
 
 		let adjustLevel = ruleTable.adjustLevel;
@@ -461,7 +468,7 @@ export class TeamValidator {
 		let outOfBattleSpecies = species;
 		let tierSpecies = species;
 		if (ability.id === 'battlebond' && species.id === 'greninja') {
-			outOfBattleSpecies = dex.species.get('greninjaash');
+			if (this.gen < 9) outOfBattleSpecies = dex.species.get('greninjaash');
 			if (ruleTable.has('obtainableformes')) {
 				tierSpecies = outOfBattleSpecies;
 			}
@@ -513,6 +520,14 @@ export class TeamValidator {
 				problems.push(`${name}'s Hidden Power type (${set.hpType}) is invalid.`);
 			} else {
 				set.hpType = type.name;
+			}
+		}
+		if (set.teraType) {
+			const type = dex.types.get(set.teraType);
+			if (!type.exists) {
+				problems.push(`${name}'s Terastal type (${set.teraType}) is invalid.`);
+			} else {
+				set.teraType = type.name;
 			}
 		}
 
@@ -621,17 +636,34 @@ export class TeamValidator {
 			problems.push(...this.validateStats(set, species, setSources));
 		}
 
+		const moveLegalityWhitelist: {[k: string]: true | undefined} = {};
 		for (const moveName of set.moves) {
 			if (!moveName) continue;
 			const move = dex.moves.get(Utils.getString(moveName));
 			if (!move.exists) return [`"${move.name}" is an invalid move.`];
 
 			problem = this.checkMove(set, move, setHas);
-			if (problem) problems.push(problem);
+			if (problem) {
+				let allowedByOM;
+				if (problem.endsWith('is not obtainable without hacking or glitches.') &&
+					ruleTable.has('omunobtainablemoves')) {
+					problem = `${name}'s ${problem}`;
+					const baseCheckCanLearn = this.checkCanLearn;
+					// tell the custom move legality check that the move is illegal by default
+					this.checkCanLearn = () => problem;
+					allowedByOM = !ruleTable.checkCanLearn![0].call(this, move, outOfBattleSpecies, setSources, set);
+					this.checkCanLearn = baseCheckCanLearn;
+				}
+				if (!allowedByOM) {
+					problems.push(problem);
+				} else {
+					moveLegalityWhitelist[move.id] = true;
+				}
+			}
 		}
 
 		if (ruleTable.has('obtainablemoves')) {
-			problems.push(...this.validateMoves(outOfBattleSpecies, set.moves, setSources, set, name));
+			problems.push(...this.validateMoves(outOfBattleSpecies, set.moves, setSources, set, name, moveLegalityWhitelist));
 		}
 
 		const learnsetSpecies = dex.species.getLearnsetData(outOfBattleSpecies.id);
@@ -1319,6 +1351,11 @@ export class TeamValidator {
 				set.moves[behemothMove] = 'ironhead';
 			}
 		}
+
+		// Temporary backwards compatability until Pokemon HOME update
+		if (species.baseSpecies === 'Vivillon' && species.forme !== 'Fancy' && dex.gen === 9) {
+			set.species = 'Vivillon-Fancy';
+		}
 		return problems;
 	}
 
@@ -1545,7 +1582,7 @@ export class TeamValidator {
 			banReason = ruleTable.check('pokemontag:' + toID(move.isNonstandard));
 			if (banReason) {
 				if (move.isNonstandard === 'Unobtainable') {
-					return `${move.name} is not obtainable without hacking or glitches.`;
+					return `${move.name} is not obtainable without hacking or glitches${dex.gen >= 9 && move.gen < dex.gen ? ` in Gen ${dex.gen}` : ``}.`;
 				}
 				if (move.isNonstandard === 'Gigantamax') {
 					return `${move.name} is not usable without Gigantamaxing its user, ${move.isMax}.`;
@@ -1775,10 +1812,15 @@ export class TeamValidator {
 		}
 		const ruleTable = this.ruleTable;
 		if (ruleTable.has('obtainablemoves')) {
-			const tradebackEligible = dex.gen === 2 && species.gen === 1;
-			if (eventData.generation > setSources.maxSourceGen() && !tradebackEligible) {
+			const ssMaxSourceGen = setSources.maxSourceGen();
+			const tradebackEligible = dex.gen === 2 && (species.gen === 1 || eventSpecies.gen === 1);
+			if (ssMaxSourceGen && eventData.generation > ssMaxSourceGen && !tradebackEligible) {
 				if (fastReturn) return true;
-				problems.push(`${name} must not have moves only learnable in gen ${setSources.maxSourceGen()}${etc}.`);
+				problems.push(`${name} must not have moves only learnable in gen ${ssMaxSourceGen}${etc}.`);
+			}
+
+			if (eventData.from === "Gen 5 Dream World" && setSources.dreamWorldMoveCount > 1) {
+				problems.push(`${name} can only have one Dream World move.`);
 			}
 		}
 		if (ruleTable.has('obtainableabilities')) {
@@ -1808,7 +1850,7 @@ export class TeamValidator {
 			}
 			if (species.abilities['H']) {
 				const isHidden = (set.ability === species.abilities['H']);
-				if (!isHidden && eventData.isHidden) {
+				if (!isHidden && eventData.isHidden && dex.gen <= 8) {
 					if (fastReturn) return true;
 					problems.push(`${name} must have its Hidden Ability${etc}.`);
 				}
@@ -1834,16 +1876,17 @@ export class TeamValidator {
 
 	validateMoves(
 		species: Species, moves: string[], setSources: PokemonSources, set?: Partial<PokemonSet>,
-		name: string = species.name
+		name: string = species.name, moveLegalityWhitelist: {[k: string]: true | undefined} = {}
 	) {
 		const dex = this.dex;
 		const ruleTable = this.ruleTable;
 
 		const problems = [];
 
-		const checkCanLearn = (ruleTable.checkCanLearn && ruleTable.checkCanLearn[0] || this.checkCanLearn);
+		const checkCanLearn = (ruleTable.checkCanLearn?.[0] || this.checkCanLearn);
 		for (const moveName of moves) {
 			const move = dex.moves.get(moveName);
+			if (moveLegalityWhitelist[move.id]) continue;
 			const problem = checkCanLearn.call(this, move, species, setSources, set);
 			if (problem) {
 				problems.push(`${name}${problem}`);
@@ -1961,13 +2004,13 @@ export class TeamValidator {
 		/**
 		 * The format allows Sketch to copy moves in Gen 8
 		 */
-		const canSketchGen8Moves = ruleTable.has('sketchgen8moves') || this.dex.currentMod === 'gen8bdsp';
+		const canSketchPostGen7Moves = ruleTable.has('sketchpostgen7moves') || this.dex.currentMod === 'gen8bdsp';
 
 		let tradebackEligible = false;
 		while (species?.name && !alreadyChecked[species.id]) {
 			alreadyChecked[species.id] = true;
 			if (dex.gen <= 2 && species.gen === 1) tradebackEligible = true;
-			const learnset = dex.species.getLearnset(species.id);
+			let learnset = dex.species.getLearnset(species.id);
 			if (!learnset) {
 				if ((species.changesFrom || species.baseSpecies) !== species.name) {
 					// forme without its own learnset
@@ -1982,6 +2025,10 @@ export class TeamValidator {
 					// Formats should replace the `Obtainable Moves` rule if they want to
 					// allow pokemon without learnsets.
 					return ` can't learn any moves at all.`;
+				}
+				if (species.prevo && dex.species.getLearnset(toID(species.prevo))) {
+					learnset = dex.species.getLearnset(toID(species.prevo));
+					continue;
 				}
 				// should never happen
 				throw new Error(`Species with no learnset data: ${species.id}`);
@@ -1999,8 +2046,8 @@ export class TeamValidator {
 			} else if (learnset['sketch']) {
 				if (move.noSketch || move.isZ || move.isMax) {
 					cantLearnReason = `can't be Sketched.`;
-				} else if (move.gen > 7 && !canSketchGen8Moves) {
-					cantLearnReason = `can't be Sketched because it's a Gen 8 move and Sketch isn't available in Gen 8.`;
+				} else if (move.gen > 7 && !canSketchPostGen7Moves) {
+					cantLearnReason = `can't be Sketched because it's a Gen ${move.gen} move and Sketch isn't available in Gen ${move.gen}.`;
 				} else {
 					if (!sources) sketch = true;
 					sources = learnset['sketch'].concat(sources || []);
@@ -2042,6 +2089,11 @@ export class TeamValidator {
 
 					// redundant
 					if (learnedGen <= moveSources.sourcesBefore) continue;
+
+					if (baseSpecies.evoRegion === 'Alola' && checkingPrevo && learnedGen >= 8) {
+						cantLearnReason = `is from a ${species.name} that can't be transferred to USUM to evolve into ${baseSpecies.name}.`;
+						continue;
+					}
 
 					const canUseAbilityPatch = dex.gen >= 8 && format.mod !== 'gen8dlc1';
 					if (
@@ -2088,12 +2140,12 @@ export class TeamValidator {
 						}
 					}
 
-					// Gen 8 egg moves can be taught to any pokemon from any source
-					if (learned === '8E' || 'LMTR'.includes(learned.charAt(1))) {
+					// Gen 8+ egg moves can be taught to any pokemon from any source
+					if (learnedGen >= 8 && learned.charAt(1) === 'E' || 'LMTR'.includes(learned.charAt(1))) {
 						if (learnedGen === dex.gen && learned.charAt(1) !== 'R') {
 							// current-gen level-up, TM or tutor moves:
 							//   always available
-							if (learned !== '8E' && babyOnly) setSources.babyOnly = babyOnly;
+							if (!(learnedGen >= 8 && learned.charAt(1) === 'E') && babyOnly) setSources.babyOnly = babyOnly;
 							if (!moveSources.moveEvoCarryCount) return null;
 						}
 						// past-gen level-up, TM, or tutor moves:
@@ -2132,6 +2184,7 @@ export class TeamValidator {
 						// DW moves:
 						//   only if that was the source
 						moveSources.add(learned + species.id);
+						moveSources.dreamWorldMoveCount++;
 					} else if (learned.charAt(1) === 'V' && this.minSourceGen < learnedGen) {
 						// Virtual Console or Let's Go transfer moves:
 						//   only if that was the source
