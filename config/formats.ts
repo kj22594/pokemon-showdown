@@ -228,6 +228,42 @@ export const Formats: FormatList = [
         ],
     },
 	{
+		name: "[Gen 9] Draft",
+
+		mod: 'gen9',
+		ruleset: ['Standard', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Sleep Clause Mod', '+ Charmander', '+ Charmeleon', '+ Charizard', '+ Diglett-Alola', '+ Dugtrio-Alola', '+ Meowth-Alola',
+			'+ Meowth-Galar', '+ Persian-Alola', '+ Growlithe-Hisui', '+ Arcanine-Hisui', '+ Slowpoke-Galar', '+ Slowbro-Galar', '+ Grimer-Alola', '+ Muk-Alola', '+ Voltorb-Hisui', '+ Electrode-Hisui', '+ Articuno',
+			'+ Articuno-Galar', '+ Zapdos', '+ Zapdos-Galar', '+ Moltres', '+ Moltres-Galar', '+ Cyndaquil', '+ Quilava', '+ Typhlosion', '+ Typhlosion-Hisui', '+ Quagsire', '+ Slowking-Galar', '+ Qwilfish-Hisui', '+ Sneasel-Hisui',
+			'+ Uxie', '+ Mesprit', '+ Azelf', '+ Heatran', '+ Cresselia', '+ Victini', '+ Oshawott', '+ Dewott', '+ Samurott', '+ Samurott-Hisui', '+ Zorua-Hisui', '+ Zoroark-Hisui', '+ Braviary-Hisui', '+ Tornadus', '+ Tornadus-Therian',
+			'+ Thundurus', '+ Thundurus-Therian', '+ Landorus', '+ Landorus-Therian', '+ Meloetta', '+ Chespin', '+ Quilladin', '+ Chesnaught', '+ Fennekin', '+ Braixen', '+ Delphox', '+ Froakie', '+ Frogadier', '+ Greninja', '+ Carbink',
+			'+ Sliggoo-Hisui', '+ Goodra-Hisui', '+ Avalugg-Hisui', '+ Diancie', '+ Hoopa', '+ Volcanion', '+ Rowlet', '+ Dartrix', '+ Decidueye', '+ Decidueye-Hisui', '+ Perrserker', '+ Kubfu', '+ Urshifu-Rapid-Strike', '+ Zarude', '+ Regieleki',
+			'+ Regidrago', '+ Glastrier', '+ Calyrex', '+ Wyrdeer', '+ Kleavor', '+ Ursaluna', '+ Basculegion', '+ Sneasler', '+ Overqwil', '+ Enamorus', '+ Enamorus-Therian'
+		],
+		banlist: [
+			'Uber', 'AG', 'Cinderace + Libero', 'Landorus-Base + Sheer Force', 'Arceus', 'Calyrex-Ice', 'Calyrex-Shadow', 'Chien-Pao', 'Dialga', 'Dialga-Origin', 'Palkia-Origin', 'Dragapult',
+			'Eternatus', 'Flutter Mane', 'Giratina', 'Groudon', 'Iron Bundle', 'Iron Valiant', 'Koraidon', 'Kyogre', 'Magearna', 'Mew', 'Mewtwo', 'Miraidon', 'Palafin', 'Palafin-Hero', 'Palkia',
+			'Rayquaza', 'Roaring Moon', 'Spectrier', 'Urshifu-Base', 'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock'
+		],
+	},
+	{
+		name: "[Gen 9] Draft (No Tera)",
+
+		mod: 'gen9',
+		ruleset: ['Standard', 'Terastal Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Sleep Clause Mod', '+ Charmander', '+ Charmeleon', '+ Charizard', '+ Diglett-Alola', '+ Dugtrio-Alola', '+ Meowth-Alola',
+			'+ Meowth-Galar', '+ Persian-Alola', '+ Growlithe-Hisui', '+ Arcanine-Hisui', '+ Slowpoke-Galar', '+ Slowbro-Galar', '+ Grimer-Alola', '+ Muk-Alola', '+ Voltorb-Hisui', '+ Electrode-Hisui', '+ Articuno',
+			'+ Articuno-Galar', '+ Zapdos', '+ Zapdos-Galar', '+ Moltres', '+ Moltres-Galar', '+ Cyndaquil', '+ Quilava', '+ Typhlosion', '+ Typhlosion-Hisui', '+ Quagsire', '+ Slowking-Galar', '+ Qwilfish-Hisui', '+ Sneasel-Hisui',
+			'+ Uxie', '+ Mesprit', '+ Azelf', '+ Heatran', '+ Cresselia', '+ Victini', '+ Oshawott', '+ Dewott', '+ Samurott', '+ Samurott-Hisui', '+ Zorua-Hisui', '+ Zoroark-Hisui', '+ Braviary-Hisui', '+ Tornadus', '+ Tornadus-Therian',
+			'+ Thundurus', '+ Thundurus-Therian', '+ Landorus', '+ Landorus-Therian', '+ Meloetta', '+ Chespin', '+ Quilladin', '+ Chesnaught', '+ Fennekin', '+ Braixen', '+ Delphox', '+ Froakie', '+ Frogadier', '+ Greninja', '+ Carbink',
+			'+ Sliggoo-Hisui', '+ Goodra-Hisui', '+ Avalugg-Hisui', '+ Diancie', '+ Hoopa', '+ Volcanion', '+ Rowlet', '+ Dartrix', '+ Decidueye', '+ Decidueye-Hisui', '+ Perrserker', '+ Kubfu', '+ Urshifu-Rapid-Strike', '+ Zarude', '+ Regieleki',
+			'+ Regidrago', '+ Glastrier', '+ Calyrex', '+ Wyrdeer', '+ Kleavor', '+ Ursaluna', '+ Basculegion', '+ Sneasler', '+ Overqwil', '+ Enamorus', '+ Enamorus-Therian'
+		],
+		banlist: [
+			'Uber', 'AG', 'Cinderace + Libero', 'Landorus-Base + Sheer Force', 'Arceus', 'Calyrex-Ice', 'Calyrex-Shadow', 'Chien-Pao', 'Dialga', 'Dialga-Origin', 'Palkia-Origin', 'Dragapult',
+			'Eternatus', 'Flutter Mane', 'Giratina', 'Groudon', 'Iron Bundle', 'Iron Valiant', 'Koraidon', 'Kyogre', 'Magearna', 'Mew', 'Mewtwo', 'Miraidon', 'Palafin', 'Palafin-Hero', 'Palkia',
+			'Rayquaza', 'Roaring Moon', 'Spectrier', 'Urshifu-Base', 'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'King\'s Rock'
+		],
+	},
+	{
 		section: "National Dex",
 	},
 	{
