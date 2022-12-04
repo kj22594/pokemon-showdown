@@ -194,7 +194,7 @@ export const Formats: FormatList = [
         section: "ISL Formats",
     },
     {
-        name: "ISL Season 9 Draft",
+        name: "[Gen 8] ISL Season 9 Draft",
         threads: [
             `&bullet; <a href="https://www.smogon.com/forums/threads/3666135/">National Dex Metagame Discussion</a>`,
             `&bullet; <a href="https://www.smogon.com/forums/threads/3667921/">National Dex Sample Teams</a>`,
@@ -228,7 +228,7 @@ export const Formats: FormatList = [
         ],
     },
 	{
-		name: "ISL Season 10 Draft",
+		name: "[Gen 9] ISL Season 10 Draft",
 
 		mod: 'gen9',
 		ruleset: ['Standard', '+ Charmander', '+ Charmeleon', '+ Charizard', '+ Diglett-Alola', '+ Dugtrio-Alola', '+ Meowth-Alola',
@@ -246,7 +246,7 @@ export const Formats: FormatList = [
 		],
 	},
 	{
-		name: "ISL Season 10 Draft No Tera",
+		name: "[Gen 9] ISL Season 10 Draft No Tera",
 
 		mod: 'gen9',
 		ruleset: ['Standard', 'Terastal Clause','+ Charmander', '+ Charmeleon', '+ Charizard', '+ Diglett-Alola', '+ Dugtrio-Alola', '+ Meowth-Alola',
